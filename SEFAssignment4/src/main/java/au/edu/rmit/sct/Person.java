@@ -61,7 +61,14 @@ public class Person {
       }
 
        private boolean isValidBirthdate(String bd) {
-        return true;
+        try {
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDate.parse(bd, fmt);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
        }
         private boolean isDuplicateID(String id) {
             return true;
