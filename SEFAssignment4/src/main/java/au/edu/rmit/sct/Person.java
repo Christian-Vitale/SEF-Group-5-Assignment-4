@@ -3,6 +3,12 @@ package au.edu.rmit.sct;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
+import java.util.List;
 
 public class Person {
 
@@ -71,7 +77,17 @@ public class Person {
         }
        }
         private boolean isDuplicateID(String id) {
-            return true;
+             try {
+            Path path = Path.of(FILE_NAME);
+            if (!Files.exists(path)) return false;
+            List<String> lines = Files.readAllLines(path);
+            for (String line : lines) {
+                if (line.startsWith(id + ",")) return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
         }
 
     public boolean addPerson() {
@@ -107,3 +123,4 @@ public class Person {
 
         return true;
     }
+}
