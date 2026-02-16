@@ -27,8 +27,26 @@ public class Person {
 
      private boolean isValidPersonID(String id) {
 
-        return true;
+        if (id == null || id.length() != 10) return false;
+        int firstDigit = Character.getNumericValue(id.charAt(0));
+        int secondDigit = Character.getNumericValue(id.charAt(1));
+
+        if (firstDigit < 2 || firstDigit > 9) return false;
+        if (secondDigit < 2 || secondDigit > 9) return false;
+
+        
+        if (!Character.isUpperCase(id.charAt(8)) || !Character.isUpperCase(id.charAt(9))) return false;
+
+        
+        int specialCount = 0;
+        for (int i = 2; i <= 7; i++) {
+            char c = id.charAt(i);
+            if (!Character.isLetterOrDigit(c)) specialCount++;
+        }
+
+        return specialCount >= 2;
      }
+     
       private boolean isValidAddress(String addr) {
         return true;
       }
