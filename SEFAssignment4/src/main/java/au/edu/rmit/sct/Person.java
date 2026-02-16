@@ -46,8 +46,17 @@ public class Person {
 
         return specialCount >= 2;
      }
-     
+
       private boolean isValidAddress(String addr) {
+        if (addr == null) return false;
+        String[] parts = addr.split("\\|");
+
+        if (parts.length != 5) return false;
+
+        if (!parts[0].matches("\\d+")) return false;
+
+        if (!parts[3].equals("Victoria")) return false;
+
         return true;
       }
 
