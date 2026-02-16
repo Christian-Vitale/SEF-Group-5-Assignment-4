@@ -66,11 +66,11 @@ public class Person {
         return true;
       }
 
-       private boolean isValidBirthdate(String bd) {
+       private boolean isValidBirthdate(String date) {
         try {
-            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-uuuu")
                     .withResolverStyle(ResolverStyle.STRICT);
-            LocalDate.parse(bd, fmt);
+            LocalDate.parse(date, format);
             return true;
         } catch (Exception e) {
             return false;
