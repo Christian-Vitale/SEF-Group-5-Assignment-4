@@ -13,7 +13,10 @@ public class PersonFunctionTests {
 
     @Test
     void testAddPerson_case2() {
-
+        Person p1=new Person("29ab!@#cdE", "Christian", "Vitale",
+ "15|QueenStreet|Melbourne|Victoria|3000",
+ "10-05-1995");
+ assertTrue(p1.addPerson(), "Valid person should be added successfully");
     }
 
     @Test
