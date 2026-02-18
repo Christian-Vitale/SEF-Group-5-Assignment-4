@@ -91,26 +91,35 @@ public class Person {
         return false;
     }
 
-    public boolean addPerson() {
+    public void addPerson() {
 
-        if (!isValidPersonID(personID)) return false;
-
-        if (!isValidAddress(address)) return false;
-
-        if (!isValidBirthdate(birthdate)) return false;
-
-        if (isDuplicateID(personID)) return false;
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
-            writer.write(personID + "," + firstName + "," + lastName + "," + address + "," + birthdate);
-            writer.newLine();
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-
+    if (!isValidPersonID(personID)) {
+        throw new IllegalArgumentException("Invalid Person ID: " +
+                "Must be 10 characters, first two digits between 2-9, " +
+                "last two uppercase letters, and at least 2 special characters in positions 3-8.");
     }
+
+    if (!isValidAddress(address)) {
+        throw new IllegalArgumentException("Invalid Address: " +
+                "Format must be StreetNumber|StreetName|City|Victoria|Postcode.");
+    }
+
+    if (!isValidBirthdate(birthdate)) {
+        throw new IllegalArgumentException("Invalid Birthdate: " +
+                "Must follow format dd-MM-yyyy and be a valid date.");
+    }
+
+    if (isDuplicateID(personID)) {
+        throw new IllegalArgumentException("Duplicate Person ID: ID already exists.");
+    }
+
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
+        writer.write(personID + "," + firstName + "," + lastName + "," + address + "," + birthdate);
+        writer.newLine();
+    } catch (IOException e) {
+        throw new RuntimeException("Error writing to file.");
+    }
+}
 
 
 
