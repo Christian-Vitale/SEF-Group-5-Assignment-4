@@ -93,25 +93,15 @@ public class Person {
 
     public void addPerson() {
 
-    if (!isValidPersonID(personID)) {
-        throw new IllegalArgumentException("Invalid Person ID: " +
-                "Must be 10 characters, first two digits between 2-9, " +
-                "last two uppercase letters, and at least 2 special characters in positions 3-8.");
-    }
+    StringBuilder errors = new StringBuilder();
 
-    if (!isValidAddress(address)) {
-        throw new IllegalArgumentException("Invalid Address: " +
-                "Format must be StreetNumber|StreetName|City|Victoria|Postcode.");
-    }
+    if (!isValidPersonID(personID)) errors.append("Invalid Person ID; ");
+    if (!isValidAddress(address)) errors.append("Invalid Address; ");
+    if (!isValidBirthdate(birthdate)) errors.append("Invalid Birthdate; ");
+    if (isDuplicateID(personID)) errors.append("Duplicate Person ID; ");
 
-    if (!isValidBirthdate(birthdate)) {
-        throw new IllegalArgumentException("Invalid Birthdate: " +
-                "Must follow format dd-MM-yyyy and be a valid date.");
-    }
+    if (errors.length() > 0) throw new IllegalArgumentException(errors.toString());
 
-    if (isDuplicateID(personID)) {
-        throw new IllegalArgumentException("Duplicate Person ID: ID already exists.");
-    }
 
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
         writer.write(personID + "," + firstName + "," + lastName + "," + address + "," + birthdate);
