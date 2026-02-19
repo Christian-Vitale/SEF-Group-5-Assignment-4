@@ -17,7 +17,8 @@ public class PersonTest  {
                 "10-05-1995"
         );
 
-        assertDoesNotThrow(() -> p1.addPerson());
+        assertThrows(IllegalArgumentException.class,
+            () -> p1.addPerson());
     }
 
     @Test
@@ -30,10 +31,8 @@ void testAddPerson_invalidID() {
             "10-05-1995"
     );
 
-    IllegalArgumentException ex =
-            assertThrows(IllegalArgumentException.class, () -> p1.addPerson());
-
-    System.out.println("Error message: " + ex.getMessage());
+     assertThrows(IllegalArgumentException.class,
+            () -> p1.addPerson());
 }
 
 
@@ -48,10 +47,8 @@ void testAddPerson_invalidID() {
                 "10-05-1995"
         );
 
-        IllegalArgumentException ex =
-                assertThrows(IllegalArgumentException.class, () -> p1.addPerson());
-
-        System.out.println("Error message: " + ex.getMessage());
+        assertThrows(IllegalArgumentException.class,
+            () -> p1.addPerson());
     }
 
     @Test
@@ -65,15 +62,33 @@ void testAddPerson_invalidID() {
                 "32-05-1995"  // Invalid date
         );
 
-        IllegalArgumentException ex =
-                assertThrows(IllegalArgumentException.class, () -> p1.addPerson());
-
-         System.out.println("Error message: " + ex.getMessage());
+         assertThrows(IllegalArgumentException.class,
+            () -> p1.addPerson());
     }
     @Test
-    void testAddPerson_case5() {
-      
-    }
+    void testAddPerson_duplicateID() {
 
+        Person p1 = new Person(
+                "59ab!@#cDE",
+                "Christian12",
+                "Vitale",
+                "15|QueenStreet|Melbourne|Victoria|3000",
+                "10-05-1995"
+        );
+
+        assertThrows(IllegalArgumentException.class,
+            () -> p1.addPerson());
+
+        Person p2 = new Person(
+                "59ab!@#cDE",
+                "John",
+                "Smith",
+                "20|KingStreet|Melbourne|Victoria|3000",
+                "11-06-1990"
+        );
+
+        assertThrows(IllegalArgumentException.class,
+            () -> p2.addPerson());
+    }
 
 }
