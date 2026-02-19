@@ -91,26 +91,25 @@ public class Person {
         return false;
     }
 
-    public boolean addPerson() {
+    public void addPerson() {
 
-        if (!isValidPersonID(personID)) return false;
+    StringBuilder errors = new StringBuilder();
 
-        if (!isValidAddress(address)) return false;
+    if (!isValidPersonID(personID)) errors.append("Invalid Person ID; ");
+    if (!isValidAddress(address)) errors.append("Invalid Address; ");
+    if (!isValidBirthdate(birthdate)) errors.append("Invalid Birthdate; ");
+    if (isDuplicateID(personID)) errors.append("Duplicate Person ID; ");
 
-        if (!isValidBirthdate(birthdate)) return false;
+    if (errors.length() > 0) throw new IllegalArgumentException(errors.toString());
 
-        if (isDuplicateID(personID)) return false;
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
-            writer.write(personID + "," + firstName + "," + lastName + "," + address + "," + birthdate);
-            writer.newLine();
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
+        writer.write(personID + "," + firstName + "," + lastName + "," + address + "," + birthdate);
+        writer.newLine();
+    } catch (IOException e) {
+        throw new RuntimeException("Error writing to file.");
     }
+}
 
 
 
