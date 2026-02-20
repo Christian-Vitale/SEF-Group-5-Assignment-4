@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4bdea8e-77d4-42a5-95b4-5555d39cb1c2" name="Changes" comment="updatePersonalDetails function implementation" />
+    <list default="true" id="b4bdea8e-77d4-42a5-95b4-5555d39cb1c2" name="Changes" comment="Testing">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEFAssignment4/src/main/resources/persons.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SEFAssignment4/src/main/resources/persons.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEFAssignment4/src/test/java/au/edu/rmit/sct/PersonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/SEFAssignment4/src/test/java/au/edu/rmit/sct/PersonTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,18 +24,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Christian-Vitale"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Christian-Vitale&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Mura685/SEF-Group-5-Assignment-4.git",
-    "accountId": "11d6be96-5e30-4326-81d7-74312f9aa31f"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Mura685/SEF-Group-5-Assignment-4.git&quot;,
+    &quot;accountId&quot;: &quot;11d6be96-5e30-4326-81d7-74312f9aa31f&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -47,19 +53,124 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.PersonTest.executor": "Run",
+    "JUnit.PersonTest.testAddPerson_duplicateID.executor": "Run",
+    "JUnit.PersonTest.testAddPerson_invalidBirthdate.executor": "Run",
+    "JUnit.PersonTest.testAddPerson_validCase.executor": "Run",
+    "JUnit.PersonTest.update_evenFirstDigitId_cannotChangeId_returnFalse.executor": "Run",
+    "JUnit.PersonTest.update_firstNameChanged_returnTrue.executor": "Run",
+    "JUnit.PersonTest.update_over_18_ChangeAddress_returnTrue.executor": "Run",
+    "JUnit.PersonTest.update_under_18_cannotChangeAddress_returnFalse.executor": "Run",
+    "JUnit.PersonTest.verifyBirthdateChanged_returnFalse.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/turqo/OneDrive - RMIT University/SEFAssignment4",
+    "last_opened_file_path": "C:/Users/turqo/OneDrive - RMIT University/SEFAssignment4/SEFAssignment4/src/main/resources",
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.1150748",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\turqo\OneDrive - RMIT University\SEFAssignment4\SEFAssignment4\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.PersonTest.update_over_18_ChangeAddress_returnTrue">
+    <configuration name="PersonTest.update_evenFirstDigitId_cannotChangeId_returnFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="numbers" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="au.edu.rmit.sct.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="au.edu.rmit.sct" />
+      <option name="MAIN_CLASS_NAME" value="au.edu.rmit.sct.PersonTest" />
+      <option name="METHOD_NAME" value="update_evenFirstDigitId_cannotChangeId_returnFalse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersonTest.update_firstNameChanged_returnTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="numbers" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="au.edu.rmit.sct.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="au.edu.rmit.sct" />
+      <option name="MAIN_CLASS_NAME" value="au.edu.rmit.sct.PersonTest" />
+      <option name="METHOD_NAME" value="update_firstNameChanged_returnTrue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersonTest.update_over_18_ChangeAddress_returnTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="numbers" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="au.edu.rmit.sct.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="au.edu.rmit.sct" />
+      <option name="MAIN_CLASS_NAME" value="au.edu.rmit.sct.PersonTest" />
+      <option name="METHOD_NAME" value="update_over_18_ChangeAddress_returnTrue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersonTest.update_under_18_cannotChangeAddress_returnFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="numbers" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="au.edu.rmit.sct.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="au.edu.rmit.sct" />
+      <option name="MAIN_CLASS_NAME" value="au.edu.rmit.sct.PersonTest" />
+      <option name="METHOD_NAME" value="update_under_18_cannotChangeAddress_returnFalse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersonTest.verifyBirthdateChanged_returnFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="numbers" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="au.edu.rmit.sct.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="au.edu.rmit.sct" />
+      <option name="MAIN_CLASS_NAME" value="au.edu.rmit.sct.PersonTest" />
+      <option name="METHOD_NAME" value="verifyBirthdateChanged_returnFalse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.PersonTest.update_over_18_ChangeAddress_returnTrue" />
+        <item itemvalue="JUnit.PersonTest.update_firstNameChanged_returnTrue" />
+        <item itemvalue="JUnit.PersonTest.update_evenFirstDigitId_cannotChangeId_returnFalse" />
+        <item itemvalue="JUnit.PersonTest.verifyBirthdateChanged_returnFalse" />
+        <item itemvalue="JUnit.PersonTest.update_under_18_cannotChangeAddress_returnFalse" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b4bdea8e-77d4-42a5-95b4-5555d39cb1c2" name="Changes" comment="" />
@@ -92,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771330355038</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Testing">
+      <option name="closed" value="true" />
+      <created>1771331188723</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1771331188723</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -121,6 +240,23 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create skleton code for test functions" />
     <MESSAGE value="updatePersonalDetails function implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="updatePersonalDetails function implementation" />
+    <MESSAGE value="Testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Testing" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/SEFAssignment4/src/test/java/au/edu/rmit/sct/PersonTest.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/SEFAssignment4/src/test/java/au/edu/rmit/sct/PersonTest.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
