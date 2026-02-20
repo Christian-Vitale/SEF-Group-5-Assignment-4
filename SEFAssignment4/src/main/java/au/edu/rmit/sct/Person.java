@@ -128,6 +128,7 @@ public class Person {
         if (passport == null) { 
             return false; 
         }
+        passport = passport.trim();
         if (passport.length() != 8) { 
             return false; 
         }
@@ -163,7 +164,7 @@ public class Person {
         }
 
         for (int i = 2; i < 10; i++) { 
-            if (!Character.isDigit((licence.charAt(i)))) { 
+            if (!Character.isDigit(licence.charAt(i))) { 
                 return false; 
             }
         }
@@ -231,6 +232,20 @@ public class Person {
 
         catch (IOException e) { 
             return false;
+        }
+    }
+
+    //helper function to check if that the user has no other ID types recorded 
+    private boolean alreadyHasNonStudentIDS() { 
+        return alreadyHasIdType("PASSPORT") || alreadyHasIdType("DRIVERS_LICENCE") || alreadyHasIdType("MEDICARE");
+    }
+
+    // helper function for Test use only
+    public static void clearIDFileForTesting() { 
+        try {
+            Files.write(Path.of(ID_FILE_NAME), List.of());
+        } 
+        catch (IOException e) {
         }
     }
 
@@ -343,7 +358,98 @@ public class Person {
 
 
     public boolean addID() {
+        //Must have a valid birthdate as student id cards depends on the age. 
+        if (!isValidBirthdate(this.birthdate)) { 
+            return false; 
+        }
 
-        return true;
+        //Only allows one ID to be provided per call helping to keep tests simple and test case behaviour deterministic 
+        int providedCount = 0; 
+        if (passport != null && !passport.trim().isEmpty()) { 
+            providedCount++;
+        }
+        if (driversLicence != null && !driversLicence.trim().isEmpty()) { 
+            providedCount++;
+        }
+        if (medicare != null && !medicare.trim().isEmpty()) { 
+            providedCount++;
+        }
+        if (studentCard != null && !studentCard.trim().isEmpty()) { 
+            providedCount++;
+        }
+
+        if (providedCount != 1) { 
+            return false; 
+        }
+
+        String idType; 
+        String idValue; 
+
+        //Passport 
+        if (passport != null && !passport.trim().isEmpty()) { 
+            idType = "PASSPORT"; 
+            idValue = passport.trim();
+
+            if (!isValidPassport(idValue)) { 
+                return false; 
+            }
+        }
+
+        //Drivers licence 
+        else if (driversLicence != null && !driversLicence.trim().isEmpty()) {
+            idType = "DRIVERS_LICENCE"; 
+            idValue = driversLicence.trim();
+
+            if (!isValidDriversLicence(idValue)){ 
+                return false; 
+            }
+        }
+
+        //Medicare 
+        else if (medicare != null && !medicare.trim().isEmpty()) { 
+            idType = "MEDICARE"; 
+            idValue = medicare.trim();
+
+            if (!isValidMedicare(idValue)){ 
+                return false; 
+            }
+        }
+
+        //Student card 
+        else { 
+            idType = "STUDENT_CARD"; 
+            idValue = studentCard.trim(); 
+
+            //Condition: only under 18 users can add a student id card 
+            int age = getAge(); 
+            if (age >= 18) { 
+                return false; 
+            }
+
+            //student ID card is only allowed if other ID types do not exist 
+            if (alreadyHasNonStudentIDS()) { 
+                return false;
+            }
+
+            //Checks student ID's format
+            if (!isValidStudentCard(idValue)) { 
+                return false; 
+            }
+        }
+
+        //Prevent duplicate similar id types for the same user 
+        if (alreadyHasIdType(idType)) { 
+            return false; 
+        }
+
+        //Write to file 
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(ID_FILE_NAME, true))) { 
+            writer.write(this.personID + "," + idType + "," + idValue); 
+            writer.newLine();
+            return true;
+        }
+        catch (IOException e) { 
+            return false; 
+        }
     }
 }
