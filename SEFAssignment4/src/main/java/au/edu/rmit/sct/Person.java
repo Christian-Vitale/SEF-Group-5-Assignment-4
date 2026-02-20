@@ -18,7 +18,12 @@ public class Person {
     private String lastName;
     private String address;
     private String birthdate;
+    private String passport; 
+    private String driversLicence; 
+    private String medicare; 
+    private String studentCard; 
     private static final String FILE_NAME = "src/main/resources/persons.txt";
+    private static final String ID_FILE_NAME = "src/main/resources/id.txt";
 
     public Person(String personID, String firstName, String lastName,
                   String address, String birthdate) {
@@ -29,6 +34,13 @@ public class Person {
         this.birthdate = birthdate;
 
 
+    }
+
+    public void setIdDetails(String passport, String driversLicence, String medicare, String studentCard) { 
+        this.passport = passport; 
+        this.driversLicence = driversLicence;
+        this.medicare = medicare; 
+        this.studentCard = studentCard; 
     }
 
     private boolean isValidPersonID(String id) {
@@ -111,9 +123,116 @@ public class Person {
     }
 }
 
+    //addID helper function to validate passport 
+    private boolean isValidPassport(String passport) { 
+        if (passport == null) { 
+            return false; 
+        }
+        if (passport.length() != 8) { 
+            return false; 
+        }
+        if (!Character.isUpperCase(passport.charAt(0))) { 
+            return false;
+        }
+        if (!Character.isUpperCase(passport.charAt(1))) { 
+            return false; 
+        }
 
+        for (int i = 2; i < 8; i++) { 
+            if (!Character.isDigit(passport.charAt(i))) { 
+                return false; 
+            }
+        }
+        return true; 
+    }
 
+    //addID helper function to validate Drivers licence
+    private boolean isValidDriversLicence(String licence) { 
+        if (licence == null) { 
+            return false; 
+        }
+        licence = licence.trim(); 
+        if (licence.length() != 10) { 
+            return false; 
+        }
+        if (!Character.isUpperCase(licence.charAt(0))) { 
+            return false; 
+        }
+        if (!Character.isUpperCase(licence.charAt(1))) { 
+            return false; 
+        }
 
+        for (int i = 2; i < 10; i++) { 
+            if (!Character.isDigit((licence.charAt(i)))) { 
+                return false; 
+            }
+        }
+
+        return true;
+    }
+
+    //addID helper function to validate medicare
+    private boolean isValidMedicare(String medicare) { 
+        if (medicare == null) { 
+            return false; 
+        }
+        medicare = medicare.trim(); 
+        if (medicare.length() != 9) { 
+            return false; 
+        }
+        for (int i = 0; i < 9; i++) {
+            if (!Character.isDigit(medicare.charAt(i))) {
+                return false;
+            }
+        }
+        return true; 
+    }
+
+    //addID helper function to validate student id card
+    private boolean isValidStudentCard(String studentCard) { 
+        if (studentCard == null) { 
+            return false; 
+        }
+        studentCard = studentCard.trim(); 
+        if (studentCard.length() != 12) { 
+            return false;
+        }
+        for (int i = 0; i < 12; i++) { 
+            if (!Character.isDigit(studentCard.charAt(i))) { 
+                return false;
+            }
+        }
+        return true; 
+    }
+
+    private int getAge() { 
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-uuuu").withResolverStyle(ResolverStyle.STRICT);
+        LocalDate dob = LocalDate.parse(this.birthdate, format);
+        return java.time.Period.between(dob, LocalDate.now()).getYears();
+    }
+
+    private boolean alreadyHasIdType(String idType) { 
+        try { 
+            Path path = Path.of(ID_FILE_NAME); 
+            if (!Files.exists(path)) return false; 
+
+            List<String> lines = Files.readAllLines(path); 
+            for (String line: lines) { 
+                //Stored as: personID, idType, idValue 
+                String[] parts = line.split(",", 3); 
+                if (parts.length != 3) continue; 
+
+                if (parts[0].equals(this.personID) && parts[1].equals(idType)) { 
+                    return true; 
+                }
+            }
+            return false; 
+        }
+
+        catch (IOException e) { 
+            return false;
+        }
+    }
 
     /*2. updatePersonalDetails function. This method allows updating a given person's ID, firstName, lastName, address and birthday in the TXT file.
     Changing personal details will not affect their demerit points or the suspension status. All relevant conditions discussed for the addPerson function
