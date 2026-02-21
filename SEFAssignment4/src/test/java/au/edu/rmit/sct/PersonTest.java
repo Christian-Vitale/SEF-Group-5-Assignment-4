@@ -11,11 +11,7 @@ import java.util.List;
 
 
 public class PersonTest  {
-    @BeforeEach
-    void resetFile() throws IOException {
-        Path path = Path.of("src/main/resources/persons.txt");
-        Files.write(path, List.of());   //Overwrites file with empty content to avoid clash when running independently
-    }
+
 
     @Test
     void testAddPerson_validCase() {
@@ -23,19 +19,39 @@ public class PersonTest  {
                 "29ab!@#cDE",
                 "Sudhan",
                 "Kandel",
-                "15|QueenStreet|Melbourne|Victoria|3000",
+                "15|CoomaStreet|Melbourne|Victoria|3000",
                 "10-05-1995"
         );
         // This SHOULD work, so we assert it doesn't throw an error
         assertDoesNotThrow(() -> p1.addPerson());
-    }
     
+    Person p2= new Person(
+            "89ab!@#cDE",
+            "Amit",
+            "Sharma",
+            "101|CollinsStreet|Melbourne|Victoria|3000",
+            "15-08-1992"
+    );
+    // Should pass validation
+    assertDoesNotThrow(() -> p2.addPerson());
+
+
+    Person p3 = new Person(
+            "99ab!@#cDE",
+            "Sarah",
+            "Jenkins",
+            "202|LygonStreet|Carlton|Victoria|3053",
+            "22-11-1988"
+    );
+    // Should pass validation
+    assertDoesNotThrow(() -> p3.addPerson());
+    }
 
     @Test
 void testAddPerson_invalidID() {
     Person p1 = new Person(
-            "19ab!@#cDE",
-            "Christian",
+            "19ab!@#cDE", //this is invalid ID so this data should not store in persons.txt
+            "Liam",
             "Vitale",
             "15|QueenStreet|Melbourne|Victoria|3000",
             "10-05-1995"
@@ -43,6 +59,29 @@ void testAddPerson_invalidID() {
 
      assertThrows(IllegalArgumentException.class,
             () -> p1.addPerson());
+
+
+
+        Person p2 = new Person(
+        "9ab!@#cDE", // invalid ID (only one starting digit)
+        "Olivia",
+        "Thompson",
+        "22|KingStreet|Melbourne|Victoria|3000",
+        "12-07-1992"
+);
+assertThrows(IllegalArgumentException.class,
+            () -> p2.addPerson());
+
+
+            Person p3 = new Person(
+        "ab9!@#cDE", // invalid ID (does not start with digits)
+        "Noah",
+        "Martinez",
+        "8|GeorgeStreet|Melbourne|Victoria|3000",
+        "03-11-1998"
+);
+assertThrows(IllegalArgumentException.class,
+            () -> p3.addPerson());
 }
 
 
@@ -51,9 +90,9 @@ void testAddPerson_invalidID() {
 
         Person p1 = new Person(
                 "39ab!@#cDE",
-                "Christian",
-                "Vitale",
-                "15|QueenStreet|Melbourne|NSW|3000",
+                "Barsha",
+                "Chapagain",
+                "45|StationStreet|Melbourne|NSW|3000", //This address is invalid because state should have Victoria
                 "10-05-1995"
         );
 
@@ -74,6 +113,27 @@ void testAddPerson_invalidID() {
 
          assertThrows(IllegalArgumentException.class,
             () -> p1.addPerson());
+
+            Person p2 = new Person(
+        "59ab!@#cDE",
+        "Emma",
+        "Robinson",
+        "18|LonsdaleStreet|Melbourne|Victoria|3000",
+        "15-13-1995"  // Invalid month (13 does not exist)
+);
+ assertThrows(IllegalArgumentException.class,
+            () -> p2.addPerson());
+
+            Person p3 = new Person(
+        "69ab!@#cDE",
+        "James",
+        "Walker",
+        "42|CollinsStreet|Melbourne|Victoria|3000",
+        "29-02-1993"  // Invalid date (1993 is not a leap year)
+);
+assertThrows(IllegalArgumentException.class,
+            () -> p3.addPerson());
+
     }
 
 
@@ -94,7 +154,7 @@ void testAddPerson_duplicateID() throws IOException {
     ));
 
     Person duplicate = new Person(
-            "59ab!@#cDE",
+            "59ab!@#cDE",// same Id already exist in the file
             "John",
             "Smith",
             "20|KingStreet|Melbourne|Victoria|3000",
