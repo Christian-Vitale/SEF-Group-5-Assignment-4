@@ -1,5 +1,6 @@
 package au.edu.rmit.sct;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
@@ -10,6 +11,11 @@ import java.util.List;
 
 
 public class PersonTest  {
+    @BeforeEach
+    void resetFile() throws IOException {
+        Path path = Path.of("src/main/resources/persons.txt");
+        Files.write(path, List.of());   //Overwrites file with empty content to avoid clash when running independently
+    }
 
     @Test
     void testAddPerson_validCase() {
@@ -103,26 +109,27 @@ void testAddPerson_duplicateID() throws IOException {
     @Test
 void update_under_18_cannotChangeAddress_returnFalse() throws IOException {
 
-    // Create person (under 18)
+    //Create person (under 18)
     Person p = new Person(
-            "39ab!@#cDE",
+            "88pq!@#tUV",
             "Barsha",
-            "Vitale",
+            "Ramzi",
             "15|QueenStreet|Melbourne|Victoria|3000",
             "10-05-2012"
     );
 
+
     p.addPerson();   
 
-    // Attempt to change address
+    //Attempt to change address
     String newAddress = "999|NewStreet|Melbourne|Victoria|3000";
 
     boolean result = p.updatePersonalDetails(
-            "39ab!@#cDE",
-            "Christian234",
-            "Vitale",
+            "88pq!@#tUV",
+            "Barsha",
+            "Ramzi",
             newAddress,
-            "10-05-2012"
+            "10-05-2012"   //Should Reject
     );
 
     assertFalse(result);
@@ -133,8 +140,9 @@ void update_under_18_cannotChangeAddress_returnFalse() throws IOException {
     @Test
 void update_over_18_ChangeAddress_returnTrue() throws IOException {
 
+    //Create Person (over 18)
     Person p = new Person(
-            "49ab!@#cDE",
+            "77xy!@#kLM",
             "Binisha",
             "Chapagain",
             "2000|QueenStreet|Melbourne|Victoria|3000",
@@ -146,11 +154,11 @@ void update_over_18_ChangeAddress_returnTrue() throws IOException {
     String newAddress = "99|NewStreet|Melbourne|Victoria|3000";
 
     boolean result = p.updatePersonalDetails(
-            "49ab!@#cDE",
+            "77xy!@#kLM",
             "Binisha",
             "Chapagain",
             newAddress,
-            "10-05-1995"
+            "10-05-1995"  //Update should be successful
     );
 
     assertTrue(result);
@@ -166,8 +174,8 @@ void verifyBirthdateChanged_returnFalse() throws IOException {
     // Create and add person (existing data)
     Person p = new Person(
             "43ab!@#cDE",
-            "Christian",
-            "Vitale",
+            "Peter",
+            "Parker",
             "199|QueenStreet|Melbourne|Victoria|3000",
             "10-05-1995"
     );
@@ -177,8 +185,8 @@ void verifyBirthdateChanged_returnFalse() throws IOException {
     // Attempt to update with different birthdate
     boolean result = p.updatePersonalDetails(
             "43ab!@#cDE",
-            "Christian",              // First name changed
-            "Vitale",
+            "Benjamin",              // First name changed
+            "Parker",
             "2000|QueenStreet|Melbourne|Victoria|3000",
             "10-05-1994"          // Birthdate changed → should fail
     );
@@ -197,9 +205,9 @@ void update_evenFirstDigitId_cannotChangeId_returnFalse() throws IOException {
 
     // Create and add person whose ID starts with even digit '2'
     Person p = new Person(
-            "53ab!@#cDE",
-            "Ram",
-            "Vitale",
+            "23ab!@#cDE",
+            "Anthony",
+            "Gristwood",
             "15|QueenStreet|Melbourne|Victoria|3000",
             "10-05-1995"
     );
@@ -211,8 +219,8 @@ void update_evenFirstDigitId_cannotChangeId_returnFalse() throws IOException {
 
     boolean result = p.updatePersonalDetails(
             newId,
-            "Ram",
-            "Vitale",
+            "Anthony",
+            "Gristwood",
             "15|QueenStreet|Melbourne|Victoria|3000",
             "10-05-1995"
     );
@@ -230,7 +238,7 @@ void update_firstNameChanged_returnTrue() throws IOException {
 
     // Create and add person
     Person p = new Person(
-            "89ab!@#cDE",
+            "95ab!@#zRT",
             "Christian",
             "Vitale",
             "15|QueenStreet|Melbourne|Victoria|3000",
@@ -241,7 +249,7 @@ void update_firstNameChanged_returnTrue() throws IOException {
 
     // Change only first name
     boolean result = p.updatePersonalDetails(
-            "89ab!@#cDE",
+            "95ab!@#zRT",
             "Chris",        // new first name
             "Vitale",
             "15|QueenStreet|Melbourne|Victoria|3000",

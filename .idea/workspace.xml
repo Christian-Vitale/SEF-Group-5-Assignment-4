@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4bdea8e-77d4-42a5-95b4-5555d39cb1c2" name="Changes" comment="Testing">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b4bdea8e-77d4-42a5-95b4-5555d39cb1c2" name="Changes" comment="5 Test Cases implemented. Finally passed">
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SEFAssignment4/src/main/resources/persons.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SEFAssignment4/src/main/resources/persons.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SEFAssignment4/src/test/java/au/edu/rmit/sct/PersonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/SEFAssignment4/src/test/java/au/edu/rmit/sct/PersonTest.java" afterDir="false" />
@@ -58,13 +58,16 @@
     "JUnit.PersonTest.testAddPerson_validCase.executor": "Run",
     "JUnit.PersonTest.update_evenFirstDigitId_cannotChangeId_returnFalse.executor": "Run",
     "JUnit.PersonTest.update_firstNameChanged_returnTrue.executor": "Run",
-    "JUnit.PersonTest.update_over_18_ChangeAddress_returnTrue.executor": "Run",
+    "JUnit.PersonTest.update_over_18_ChangeAddress_returnTrue.executor": "Coverage",
     "JUnit.PersonTest.update_under_18_cannotChangeAddress_returnFalse.executor": "Run",
     "JUnit.PersonTest.verifyBirthdateChanged_returnFalse.executor": "Run",
+    "Maven.numbers [clean].executor": "Run",
+    "Maven.numbers [test].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -80,7 +83,7 @@
       <recent name="C:\Users\turqo\OneDrive - RMIT University\SEFAssignment4\SEFAssignment4\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PersonTest.update_over_18_ChangeAddress_returnTrue">
+  <component name="RunManager">
     <configuration name="PersonTest.update_evenFirstDigitId_cannotChangeId_returnFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="numbers" />
       <extension name="coverage">
@@ -163,11 +166,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PersonTest.verifyBirthdateChanged_returnFalse" />
+        <item itemvalue="JUnit.PersonTest.update_evenFirstDigitId_cannotChangeId_returnFalse" />
+        <item itemvalue="JUnit.PersonTest.update_under_18_cannotChangeAddress_returnFalse" />
         <item itemvalue="JUnit.PersonTest.update_over_18_ChangeAddress_returnTrue" />
         <item itemvalue="JUnit.PersonTest.update_firstNameChanged_returnTrue" />
-        <item itemvalue="JUnit.PersonTest.update_evenFirstDigitId_cannotChangeId_returnFalse" />
-        <item itemvalue="JUnit.PersonTest.verifyBirthdateChanged_returnFalse" />
-        <item itemvalue="JUnit.PersonTest.update_under_18_cannotChangeAddress_returnFalse" />
       </list>
     </recent_temporary>
   </component>
@@ -211,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771331188723</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="5 Test Cases implemented. Finally passed">
+      <option name="closed" value="true" />
+      <created>1771583730799</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1771583730800</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -241,22 +252,23 @@
     <MESSAGE value="create skleton code for test functions" />
     <MESSAGE value="updatePersonalDetails function implementation" />
     <MESSAGE value="Testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing" />
+    <MESSAGE value="5 Test Cases implemented. Finally passed" />
+    <option name="LAST_COMMIT_MESSAGE" value="5 Test Cases implemented. Finally passed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/SEFAssignment4/src/test/java/au/edu/rmit/sct/PersonTest.java</url>
-          <line>58</line>
+          <line>63</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/SEFAssignment4/src/test/java/au/edu/rmit/sct/PersonTest.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SEFAssignment4$PersonTest_update_over_18_ChangeAddress_returnTrue.ic" NAME="PersonTest.update_over_18_ChangeAddress_returnTrue Coverage Results" MODIFIED="1771662839532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>au.edu.rmit.sct.*</FILTER>
+    </SUITE>
   </component>
 </project>
