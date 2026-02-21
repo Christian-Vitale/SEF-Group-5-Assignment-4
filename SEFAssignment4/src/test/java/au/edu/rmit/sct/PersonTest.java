@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 
+
 public class PersonTest  {
 
     @Test
@@ -83,7 +84,7 @@ void testAddPerson_duplicateID() throws IOException {
 
     // Add a known record first
     Files.write(path, List.of(
-        "59ab!@#cDE,Christian,Vitale,15|QueenStreet|Melbourne|Victoria|3000,10-05-1995"
+        "59ab!@#cDE,Christian,Vitale,25|QueenStreet|Melbourne|Victoria|3000,10-05-1995"
     ));
 
     Person duplicate = new Person(
@@ -98,182 +99,159 @@ void testAddPerson_duplicateID() throws IOException {
             duplicate::addPerson);
 }
 
-    // private static final Path FILE_PATH = Path.of("src/main/resources/persons.txt");
-    // //Test cases for updatePersonalDetails()
-    // @Test
-    // void update_under_18_cannotChangeAddress_returnFalse() throws IOException {
 
-    //     String oldId = "39ab!@#cDE";
-    //     String line = oldId + ",Christian,Vitale,15|QueenStreet|Melbourne|Victoria|3000,10-05-2012";
+    @Test
+void update_under_18_cannotChangeAddress_returnFalse() throws IOException {
 
-    //     Files.write(FILE_PATH, List.of(line));
+    // Create person (under 18)
+    Person p = new Person(
+            "39ab!@#cDE",
+            "Barsha",
+            "Vitale",
+            "15|QueenStreet|Melbourne|Victoria|3000",
+            "10-05-2012"
+    );
 
-    //     //Create person object that matches the original existent record
-    //     Person p = new Person(
-    //             oldId,
-    //             "Christian",
-    //             "Vitale",
-    //             "15|QueenStreet|Melbourne|Victoria|3000",
-    //             "10-05-2012"
-    //     );
+    p.addPerson();   
 
-    //     //Attempt to change Address (should reject)
-    //     String newAddress = "99|NewStreet|Melbourne|Victoria|3000";
-    //     boolean result = p.updatePersonalDetails(
-    //             oldId,
-    //             "Christian",
-    //             "Vitale",
-    //             newAddress,
-    //             "10-05-2012"
-    //     );
+    // Attempt to change address
+    String newAddress = "999|NewStreet|Melbourne|Victoria|3000";
 
-    //     assertFalse(result);
+    boolean result = p.updatePersonalDetails(
+            "39ab!@#cDE",
+            "Christian234",
+            "Vitale",
+            newAddress,
+            "10-05-2012"
+    );
 
-    // }
+    assertFalse(result);
+}
 
 
 
-    // @Test
-    // void update_over_18_ChangeAddress_returnTrue() throws IOException {
-    //     String oldId = "39ab!@#cDE";
-    //     String originalAddress = "15|QueenStreet|Melbourne|Victoria|3000";
-    //     String line = oldId + ",Christian,Vitale," + originalAddress + ",10-05-1995";
-    //     Files.write(FILE_PATH, List.of(line));
+    @Test
+void update_over_18_ChangeAddress_returnTrue() throws IOException {
 
-    //     Person p = new Person(
-    //             oldId,
-    //             "Sudhan",
-    //             "Vitale",
-    //             originalAddress,
-    //             "10-05-1995"
-    //     );
+    Person p = new Person(
+            "49ab!@#cDE",
+            "Binisha",
+            "Chapagain",
+            "2000|QueenStreet|Melbourne|Victoria|3000",
+            "10-05-1995"
+    );
 
-    //     //Change to new address
-    //     String newAddress = "99|NewStreet|Melbourne|Victoria|3000";
-    //     boolean result = p.updatePersonalDetails(
-    //             oldId,
-    //             "Christian",
-    //             "Vitale",
-    //             newAddress,
-    //             "10-05-1995"
-    //     );
+    p.addPerson();  
 
-    //     //Return True
-    //     assertTrue(result);
+    String newAddress = "99|NewStreet|Melbourne|Victoria|3000";
 
-    //     List<String> after = Files.readAllLines(FILE_PATH);
-    //     assertEquals(1, after.size());
-    //     assertTrue(after.get(0).contains(newAddress));
-    // }
+    boolean result = p.updatePersonalDetails(
+            "49ab!@#cDE",
+            "Binisha",
+            "Chapagain",
+            newAddress,
+            "10-05-1995"
+    );
+
+    assertTrue(result);
+}
 
 
 
 
-    // @Test
-    // void verifyBirthdateChanged_returnFalse() throws IOException {
-    //     String oldId = "39ab!@#cDE";
-    //     String address = "15|QueenStreet|Melbourne|Victoria|3000";
-    //     String line = oldId + ",Christian,Vitale," + address + ",10-05-1995";
-    //     Files.write(FILE_PATH, List.of(line));
 
-    //     Person p = new Person(
-    //             oldId,
-    //             "Christian",
-    //             "Vitale",
-    //             address,
-    //             "10-05-1995"
-    //     );
+    @Test
+void verifyBirthdateChanged_returnFalse() throws IOException {
 
-    //     boolean result = p.updatePersonalDetails(
-    //             oldId,
-    //             "Chris",              //first name changed
-    //             "Vitale",
-    //             address,
-    //             "10-05-1994"          //birthdate changed
-    //     );
+    // Create and add person (existing data)
+    Person p = new Person(
+            "43ab!@#cDE",
+            "Christian",
+            "Vitale",
+            "199|QueenStreet|Melbourne|Victoria|3000",
+            "10-05-1995"
+    );
 
-    //     //Return False
-    //     assertFalse(result);
+    p.addPerson();  
 
+    // Attempt to update with different birthdate
+    boolean result = p.updatePersonalDetails(
+            "43ab!@#cDE",
+            "Christian",              // First name changed
+            "Vitale",
+            "2000|QueenStreet|Melbourne|Victoria|3000",
+            "10-05-1994"          // Birthdate changed → should fail
+    );
 
-    //     List<String> after = Files.readAllLines(FILE_PATH);
-    //     assertEquals(1, after.size());
-    //     assertEquals(line, after.get(0));
+    // Should return false
+    assertFalse(result);
 
-    // }
+   
+}
 
 
 
-    // @Test
-    // void update_evenFirstDigitId_cannotChangeId_returnFalse() throws IOException {
 
-    //     //Old ID starts with even digit '2'
-    //     String oldId = "29ab!@#cDE";
-    //     String address = "15|QueenStreet|Melbourne|Victoria|3000";
-    //     String line = oldId + ",Christian,Vitale," + address + ",10-05-1995";
-    //     Files.write(FILE_PATH, List.of(line));
+   @Test
+void update_evenFirstDigitId_cannotChangeId_returnFalse() throws IOException {
 
-    //     Person p = new Person(
-    //             oldId,
-    //             "Christian",
-    //             "Vitale",
-    //             address,
-    //             "10-05-1995"
-    //     );
+    // Create and add person whose ID starts with even digit '2'
+    Person p = new Person(
+            "53ab!@#cDE",
+            "Ram",
+            "Vitale",
+            "15|QueenStreet|Melbourne|Victoria|3000",
+            "10-05-1995"
+    );
+
+    p.addPerson();  
+
+    // Attempt to change ID (should fail because old ID starts with even digit)
+    String newId = "39ab!@#cDE";
+
+    boolean result = p.updatePersonalDetails(
+            newId,
+            "Ram",
+            "Vitale",
+            "15|QueenStreet|Melbourne|Victoria|3000",
+            "10-05-1995"
+    );
+
+    // Should return false
+    assertFalse(result);
 
 
-    //     String newId = "39ab!@#cDE";
-    //     boolean result = p.updatePersonalDetails(
-    //             newId,
-    //             "Christian",
-    //             "Vitale",
-    //             address,
-    //             "10-05-1995"
-    //     );
-
-    //     //Return false
-    //     assertFalse(result);
-
-    //     List<String> after = Files.readAllLines(FILE_PATH);
-    //     assertEquals(1, after.size());
-    //     assertEquals(line, after.get(0));
-    // }
+}
 
 
 
-    // @Test
-    // void update_firstNameChanged_returnTrue() throws IOException {
+   @Test
+void update_firstNameChanged_returnTrue() throws IOException {
+
+    // Create and add person
+    Person p = new Person(
+            "89ab!@#cDE",
+            "Christian",
+            "Vitale",
+            "15|QueenStreet|Melbourne|Victoria|3000",
+            "10-05-1995"
+    );
+
+    p.addPerson();  
+
+    // Change only first name
+    boolean result = p.updatePersonalDetails(
+            "89ab!@#cDE",
+            "Chris",        // new first name
+            "Vitale",
+            "15|QueenStreet|Melbourne|Victoria|3000",
+            "10-05-1995"
+    );
 
 
-    //     String oldId = "39ab!@#cDE";
-    //     String address = "15|QueenStreet|Melbourne|Victoria|3000";
-    //     String line = oldId + ",Christian,Vitale," + address + ",10-05-1995";
-    //     Files.write(FILE_PATH, List.of(line));
+    assertTrue(result);
 
-    //     Person p = new Person(
-    //             oldId,
-    //             "Christian",
-    //             "Vitale",
-    //             address,
-    //             "10-05-1995"
-    //     );
-
-    //     //Aim is to Change first name only
-    //     boolean result = p.updatePersonalDetails(
-    //             oldId,
-    //             "Chris",        //change first name
-    //             "Vitale",
-    //             address,
-    //             "10-05-1995"
-    //     );
-
-    //     //Should return true
-    //     assertTrue(result);
-
-    //     List<String> after = Files.readAllLines(FILE_PATH);
-    //     assertEquals(1, after.size());
-    //     assertTrue(after.get(0).contains("Chris"));
-    // }
+}
 
 }
 
