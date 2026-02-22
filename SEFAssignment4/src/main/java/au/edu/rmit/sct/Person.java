@@ -103,10 +103,19 @@ public class Person {
         return false;
     }
 
+    // This method stores information about a person in a TXT file. However, the following conditions should be considered when adding persons.
+    // If the Person's information meets the below conditions and any other conditions you may want to consider, the information should be inserted into a
+    // TXT file, and the addPerson function should return true. Otherwise, the information should not be inserted into the TXT file, and the addPerson function should return false.
+    //
+    //Condition 1: personID should be exactly 10 characters long; the first two characters should be numbers between 2 and 9, there should be at least two special characters between characters 3 and 8, and the last two characters should be uppercase letters (A-Z). Example: "56s_d%&fAB"
+    //Condition 2: The address of the Person should follow the following format: Street Number|Street|City|State|Country.  The State should be only Victoria. Example: 32|Highland Street|Melbourne|Victoria|Australia.
+    //Condition 3: The format of the birthdate of the person should follow the following format: DD-MM-YYYY. Example: 15-11-1990.
+
     public void addPerson() {
 
     StringBuilder errors = new StringBuilder();
 
+    //Validate all fields
     if (!isValidPersonID(personID)) errors.append("Invalid Person ID; ");
     if (!isValidAddress(address)) errors.append("Invalid Address; ");
     if (!isValidBirthdate(birthdate)) errors.append("Invalid Birthdate; ");
@@ -114,7 +123,7 @@ public class Person {
 
     if (errors.length() > 0) throw new IllegalArgumentException(errors.toString());
 
-
+     //Append the new person's details
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME, true))) {
         writer.write(personID + "," + firstName + "," + lastName + "," + address + "," + birthdate);
         writer.newLine();
@@ -355,7 +364,15 @@ public class Person {
             return false;
         }
     }
-
+ //This method stores information about a persons ID in a TXT file. However, the following conditions should be considered when adding ID.
+    // If the ID information meets the below conditions and any other conditions you may want to consider (see stretch goals), the information should be
+    // inserted into a TXT file, and the addID function should return true. Otherwise, the information should not be inserted into the TXT file, and the
+    // addID function should return false. To extend this method (stretch goals) you can create separate classes to represent the data.
+    //
+    // Condition 1: passport should be exactly 8 characters long; the first two characters should be should be uppercase letters (A-Z), and the other characters should be numbers 0-9. You could create a Passport class with Name, Date of Birth, Country, Data of Issue, Date of Expiry, and Authority fields.
+    //Condition 2: drivers licence should be exactly 10 characters long; the first two characters should be should be uppercase letters (A-Z), and the other characters should be numbers 0-9. You could create a Drivers Licence class with Date of Birth, Version, Name, and VehicleType fields.
+    //Condition 3:  medicare card should be exactly 9 characters long. All characters should be numbers 0-9. You could create a Medicare Card class including valid to field.
+    //Condition 4:  student card if a person is under 18 a student card can instead be added (assuming they have no passport, drivers licence, medicare card) which should be exactly 12 characters long. All characters should be numbers 0-9.
 
     public boolean addID() {
         //Must have a valid birthdate as student id cards depends on the age. 
