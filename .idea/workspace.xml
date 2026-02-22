@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4bdea8e-77d4-42a5-95b4-5555d39cb1c2" name="Changes" comment="Fixed Test Case of Update Personal Details.">
+    <list default="true" id="b4bdea8e-77d4-42a5-95b4-5555d39cb1c2" name="Changes" comment="Adding comments underlying the task for each function">
+      <change afterPath="$PROJECT_DIR$/SEFAssignment4/src/main/resources/id.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SEFAssignment4/src/main/java/au/edu/rmit/sct/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/SEFAssignment4/src/main/java/au/edu/rmit/sct/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEFAssignment4/src/test/java/au/edu/rmit/sct/PersonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/SEFAssignment4/src/test/java/au/edu/rmit/sct/PersonTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,42 +48,59 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.PersonTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PersonTest.testAddPerson_duplicateID.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PersonTest.testAddPerson_invalidAddress.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PersonTest.testAddPerson_invalidBirthdate.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PersonTest.testAddPerson_invalidID.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PersonTest.testAddPerson_validCase.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PersonTest.update_evenFirstDigitId_cannotChangeId_returnFalse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PersonTest.update_firstNameChanged_returnTrue.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PersonTest.update_over_18_ChangeAddress_returnTrue.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PersonTest.update_under_18_cannotChangeAddress_returnFalse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PersonTest.verifyBirthdateChanged_returnFalse.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.numbers [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.numbers [test].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/turqo/OneDrive - RMIT University/SEFAssignment4/SEFAssignment4/src/main/resources&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.1150748&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.PersonTest.Validpassport_returnTrue.executor": "Run",
+    "JUnit.PersonTest.executor": "Run",
+    "JUnit.PersonTest.testAddPerson_duplicateID.executor": "Run",
+    "JUnit.PersonTest.testAddPerson_invalidAddress.executor": "Run",
+    "JUnit.PersonTest.testAddPerson_invalidBirthdate.executor": "Run",
+    "JUnit.PersonTest.testAddPerson_invalidID.executor": "Run",
+    "JUnit.PersonTest.testAddPerson_validCase.executor": "Run",
+    "JUnit.PersonTest.update_evenFirstDigitId_cannotChangeId_returnFalse.executor": "Run",
+    "JUnit.PersonTest.update_firstNameChanged_returnTrue.executor": "Run",
+    "JUnit.PersonTest.update_over_18_ChangeAddress_returnTrue.executor": "Run",
+    "JUnit.PersonTest.update_under_18_cannotChangeAddress_returnFalse.executor": "Run",
+    "JUnit.PersonTest.verifyBirthdateChanged_returnFalse.executor": "Run",
+    "Maven.numbers [clean].executor": "Run",
+    "Maven.numbers [test].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/turqo/OneDrive - RMIT University/SEFAssignment4/SEFAssignment4/src/main/resources",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.1150748",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\turqo\OneDrive - RMIT University\SEFAssignment4\SEFAssignment4\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PersonTest.testAddPerson_duplicateID">
+  <component name="RunManager">
+    <configuration name="PersonTest.Validpassport_returnTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="numbers" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="au.edu.rmit.sct.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="au.edu.rmit.sct" />
+      <option name="MAIN_CLASS_NAME" value="au.edu.rmit.sct.PersonTest" />
+      <option name="METHOD_NAME" value="Validpassport_returnTrue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PersonTest.testAddPerson_duplicateID" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="numbers" />
       <extension name="coverage">
@@ -94,22 +112,6 @@
       <option name="PACKAGE_NAME" value="au.edu.rmit.sct" />
       <option name="MAIN_CLASS_NAME" value="au.edu.rmit.sct.PersonTest" />
       <option name="METHOD_NAME" value="testAddPerson_duplicateID" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PersonTest.testAddPerson_invalidAddress" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="numbers" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="au.edu.rmit.sct.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="au.edu.rmit.sct" />
-      <option name="MAIN_CLASS_NAME" value="au.edu.rmit.sct.PersonTest" />
-      <option name="METHOD_NAME" value="testAddPerson_invalidAddress" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -165,11 +167,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PersonTest.Validpassport_returnTrue" />
         <item itemvalue="JUnit.PersonTest.update_over_18_ChangeAddress_returnTrue" />
         <item itemvalue="JUnit.PersonTest.update_under_18_cannotChangeAddress_returnFalse" />
         <item itemvalue="JUnit.PersonTest.testAddPerson_duplicateID" />
         <item itemvalue="JUnit.PersonTest.testAddPerson_invalidBirthdate" />
-        <item itemvalue="JUnit.PersonTest.testAddPerson_invalidAddress" />
       </list>
     </recent_temporary>
   </component>
@@ -229,7 +231,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771664002653</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Adding comments underlying the task for each function">
+      <option name="closed" value="true" />
+      <created>1771727397469</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1771727397469</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -261,7 +271,8 @@
     <MESSAGE value="Testing" />
     <MESSAGE value="5 Test Cases implemented. Finally passed" />
     <MESSAGE value="Fixed Test Case of Update Personal Details." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Test Case of Update Personal Details." />
+    <MESSAGE value="Adding comments underlying the task for each function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding comments underlying the task for each function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

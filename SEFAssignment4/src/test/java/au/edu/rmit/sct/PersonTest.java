@@ -321,6 +321,37 @@ void update_firstNameChanged_returnTrue() throws IOException {
 
 }
 
+
+
+
+   @Test
+    void Validpassport_returnTrue() {
+        Person.clearIDFileForTesting();
+
+
+        //Create person
+       Person p = new Person(
+               "49ab!@#zRS",
+               "Dan",
+               "Carter",
+               "15|QueenStreet|Melbourne|Victoria|3000",
+               "07-12-1995"
+       );
+
+       //Set Passport details
+       //Exactly 8 characters long
+       //First two characters should be uppercase
+       //Rest should be numbers 0-9
+       p.setIdDetails("AC135792", null, null, null );
+
+       boolean result = p.addID();
+
+       //Must return true
+       assertTrue(result);
+
+
+   }
+
 }
 
 
