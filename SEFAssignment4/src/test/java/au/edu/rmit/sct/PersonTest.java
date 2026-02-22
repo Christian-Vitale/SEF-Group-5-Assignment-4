@@ -1,17 +1,35 @@
 package au.edu.rmit.sct;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
 
 
 public class PersonTest  {
 
+        //Helper method for addID tests; checks id.txt exists and is empty to ensure tests aren't affecting each other 
+        private void resetIDFile() throws IOException { 
+                Path idPath = Path.of("src/main/resources/id.txt"); 
+
+                Files.createDirectories(idPath.getParent());
+
+                //Create id.txt if it does not exist 
+                if (!Files.exists(idPath)) { 
+                        Files.createFile(idPath); 
+                }
+
+                //Clear the file so each test starts with a clean slate 
+                Files.write(idPath, List.of());
+        }
 
     @Test
     void testAddPerson_validCase() {
@@ -320,6 +338,110 @@ void update_firstNameChanged_returnTrue() throws IOException {
     assertTrue(result);
 
 }
+        @Test
+        void addID_validPassport_returnsTrue_andWritesLine() throws IOException { 
+                //resets file to ensure test is independent 
+                resetIDFile();
+
+                Person p = new Person("56s_d%&fAB", "Nyan", "Test", "15|QueenStreet|Melbourne|Victoria|3000", "10-05-2012");
+
+                //Provide passport type ID 
+                p.setIdDetails("AB123456", null, null, null);
+
+                //Should pass test
+                assertTrue(p.addID());
+
+                //Verify file output 
+                List<String> lines = Files.readAllLines(Path.of("src/main/resources/id.txt"));
+                assertEquals(1, lines.size()); 
+                assertEquals("56s_d%&fAB,PASSPORT,AB123456", lines.get(0));
+        }
+
+        @Test
+        void addID_invalidPassport_lowercase_returnsFalse_andDoesNotWrite() throws IOException { 
+                resetIDFile();
+
+                Person p = new Person("56s_d%&fAB", "Nyan", "Test", "15|QueenStreet|Melbourne|Victoria|3000", "10-05-2012");
+
+                //Invalid as first two characters must be uppercase letters 
+                p.setIdDetails("aB123456", null, null, null);
+
+                assertFalse(p.addID());
+
+                //File should remain empty 
+                List<String> lines = Files.readAllLines(Path.of("src/main/resources/id.txt"));
+                assertTrue(lines.isEmpty()); 
+        }
+
+        @Test 
+        void addID_validMedicare_returnsTrue_andWritesLine() throws IOException { 
+                resetIDFile(); 
+
+                Person p = new Person("56s_d%&fAB", "Nyan", "Test", "15|QueenStreet|Melbourne|Victoria|3000", "10-05-2012");
+
+                //Medicare must be exactly 9 digits
+                p.setIdDetails(null, null, "123456789", null);
+
+                assertTrue(p.addID());
+
+                List<String> lines = Files.readAllLines(Path.of("src/main/resources/id.txt"));
+                assertEquals(1, lines.size()); 
+                assertEquals("56s_d%&fAB,MEDICARE,123456789", lines.get(0));
+        }
+
+        @Test
+        void addID_studentCard_under18_noOtherIDs_returnsTrue() throws IOException { 
+                resetIDFile();
+
+                Person p = new Person("56s_d%&fAB", "Nyan", "Test", "15|QueenStreet|Melbourne|Victoria|3000", "10-05-2012");
+                
+                //Student card must be exactly 12 digits
+                p.setIdDetails(null, null, null, "123456789012");
+
+                assertTrue(p.addID());
+
+                List<String> lines = Files.readAllLines(Path.of("src/main/resources/id.txt"));
+                assertEquals(1, lines.size()); 
+                assertEquals("56s_d%&fAB,STUDENT_CARD,123456789012", lines.get(0));
+        }
+
+        @Test
+        void addID_studentCard_rejectedIfNonStudentIdExists_returnsFalse() throws IOException { 
+                resetIDFile();
+
+                Person p = new Person("56s_d%&fAB", "Nyan", "Test", "15|QueenStreet|Melbourne|Victoria|3000", "10-05-2012");
+
+                //Add a non-student ID first 
+                p.setIdDetails(null, null, "123456789", null);
+                assertTrue(p.addID());
+
+                //add student id card, and should fail because alreadyHasNonStudentIDS() should becomes true 
+                p.setIdDetails(null, null, null, "123456789012");
+                assertFalse(p.addID()); 
+
+                //File should still only contain the Medicare entry 
+                List<String> lines = Files.readAllLines(Path.of("src/main/resources/id.txt"));
+                assertEquals(1, lines.size());
+                assertEquals("56s_d%&fAB,MEDICARE,123456789", lines.get(0)); 
+        }
+
+        @Test 
+        void addID_validDriversLicence_returnsTrue_OneLineWritten() throws IOException { 
+                //start from empty id.txt 
+                resetIDFile(); 
+
+                Person p = new Person("56s_d%&fAB", "Nyan", "Test", "15|QueenStreet|Melbourne|Victoria|3000","10-05-2012");
+
+                //Driver's licence ID should be 10 chars total, first 2 are uppercase, remaining should be 8 digits
+                p.setIdDetails(null, "AB12345678", null, null);
+ 
+                assertTrue(p.addID());
+
+                //Verify it wrote exactly one line in the correct format 
+                List<String> lines = Files.readAllLines(Path.of("src/main/resources/id.txt"));
+                assertEquals(1, lines.size()); 
+                assertEquals("56s_d%&fAB,DRIVERS_LICENCE,AB12345678", lines.get(0));
+        }
 
 }
 
